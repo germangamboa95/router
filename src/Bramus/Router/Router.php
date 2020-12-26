@@ -398,8 +398,6 @@ class Router
                 $controller = $this->getNamespace() . '\\' . $controller;
             }
 
-            // Make sure it's callable
-            if (is_callable(array($controller, $method))) {
                 if ((new \ReflectionMethod($controller, $method))->isStatic()) {
                     forward_static_call_array(array($controller, $method), $params);
                 } else {
@@ -409,7 +407,7 @@ class Router
                     }
                     call_user_func_array(array($controller, $method), $params);
                 }
-            }
+            
         }
     }
 
